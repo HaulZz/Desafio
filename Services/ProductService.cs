@@ -46,10 +46,19 @@ namespace EstoqueAPI.Services
         public static void Update(Product product)
         {
             var oldProduct = Get(product.Id);
-            oldProduct.Sku = product.Sku;
-            oldProduct.Name = product.Name;
-            oldProduct.Quantity = product.Quantity;
-            oldProduct.Price = product.Price;
+            if(product.Price == 0){
+                oldProduct.Quantity = product.Quantity;
+            }
+            else if(product.Quantity == 0){
+                oldProduct.Price = product.Price;
+            }
+            else{
+                oldProduct.Sku = product.Sku;
+                oldProduct.Name = product.Name;
+                oldProduct.Quantity = product.Quantity;
+                oldProduct.Price = product.Price;
+            }
+            
             // foreach (Product prod in Products)
             // {
             //     if (prod.Id == product.Id)
