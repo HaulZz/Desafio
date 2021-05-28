@@ -24,6 +24,7 @@ namespace EstoqueAPI.Services
         }
         public static Product Get(int id)
         {
+            //var product = DataBase.Get(id);
             var product = Products.Find(product => product.Id == id); 
             return product;
             // foreach (Product product in Products)
@@ -46,10 +47,10 @@ namespace EstoqueAPI.Services
         public static void Update(Product product)
         {
             var oldProduct = Get(product.Id);
-            if(product.Price == 0){
+            if(product.Price == 0 && product.Name is null){
                 oldProduct.Quantity = product.Quantity;
             }
-            else if(product.Quantity == 0){
+            else if(product.Quantity == 0 && product.Name is null){
                 oldProduct.Price = product.Price;
             }
             else{

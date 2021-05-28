@@ -1,3 +1,5 @@
+using MongoDB.Bson;
+
 namespace EstoqueAPI.Models
 {
     public class Product

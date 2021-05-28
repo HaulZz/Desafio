@@ -12,13 +12,15 @@ namespace EstoqueAPI.Controllers
         //Get todos os produtos
         [HttpGet]
         public ActionResult<List<Product>> GetAll(){
-            return ProductService.GetAll();
+            //return ProductService.GetAll();
+            return DataBase.GetAll();
         }
 
         //Get Um produto
         [HttpGet("{id}")]
         public ActionResult<Product> Get(int id){
-            var product = ProductService.Get(id);
+            //var product = ProductService.Get(id);
+            var product = DataBase.Get(id);
             if (product is null){
                 return NotFound();
             }
@@ -28,8 +30,9 @@ namespace EstoqueAPI.Controllers
         //Add produto
         [HttpPost]
         public IActionResult Create(Product product){
-            ProductService.Add(product);
-            return CreatedAtAction(nameof(Create),new {id = product.Id }, product);
+            //ProductService.Add(product);
+            DataBase.Add(product);
+            return NoContent();
         }
 
         //Atualizar produto
