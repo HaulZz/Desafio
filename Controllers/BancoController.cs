@@ -30,5 +30,25 @@ namespace EstoqueAPI.Controllers
             DataBase.Add(product);
             return NoContent();
         }
+
+        //Atualizar um produto
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Product product){
+            if (id != product.Id){
+                return BadRequest();
+            }
+            DataBase.Update(product);
+            return CreatedAtAction(nameof(Update),new {id = product.Id }, product);
+        }
+
+        //Deletar um produto
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id){
+            if (DataBase.Get(id) is null){
+                return NotFound();
+            }
+            DataBase.Delete(id);
+            return NoContent();
+        }
     }
 }

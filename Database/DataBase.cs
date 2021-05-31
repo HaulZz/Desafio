@@ -16,6 +16,7 @@ public class DataBase
         get { return client; }
     }
     
+	//Criar novo ID
 	public static int Id(){
 		var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
 		var product = collection.Find(bson => true).SortBy(bson => bson["id"]).ThenByDescending(bson => bson["id"]).ToList();
@@ -61,20 +62,38 @@ public class DataBase
 	}
 
 	//Add um produto
-	public static void Update(Product prod){
+	public static void Add(Product product){
 		var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
-		var product = new BsonDocument
+		var prod = new BsonDocument
 			{
 				{ "id", Id()+1 },
-				{ "name", prod.Name },
-				{ "sku", prod.Sku },
-				{ "price", prod.Price },
-				{ "quantity", prod.Quantity}
+				{ "name", product.Name },
+				{ "sku", product.Sku },
+				{ "price", product.Price },
+				{ "quantity", product.Quantity}
 			};
-		collection.InsertOne(product);
-
-
+		collection.InsertOne(prod);
 	}
-	//
 
-}	
+	//Update um produto
+	public static void Update(Product product){
+		var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
+
+		var update = Builders<BsonDocument>.Update.Set("price", product.Price)
+										.Set("name", product.Name)
+										.Set("sku", product.Sku)
+										.Set("quantity", product.Quantity);
+
+		var filter = Builders<BsonDocument>.Filter.Eq("id", product.Id);
+		collection.UpdateOne(filter, update);
+	}
+
+	//Deletar um produto
+	public static void Delete(int id){
+		var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
+		var filter = Builders<BsonDocument>.Filter.Eq("id", id);
+		collection.DeleteOne(filter);
+	}
+}
+
+            

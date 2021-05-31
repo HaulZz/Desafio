@@ -38,22 +38,23 @@ namespace EstoqueAPI.Controllers
         //Atualizar produto
         [HttpPut("{id}")]
         public IActionResult Update(int id, Product product){
-            if (ProductService.Get(id) is null){
+            if (DataBase.Get(id) is null){
                 return NotFound();
             }
             if (id != product.Id){
                 return BadRequest();
             }
-            ProductService.Update(product);
+            //ProductService.Update(product);
+            DataBase.Update(product);
             return CreatedAtAction(nameof(Update),new {id = product.Id }, product);
         }
         //Deletar produto
         [HttpDelete("{id}")]
         public IActionResult Delete(int id){
-            if (ProductService.Get(id) is null){
+            if (DataBase.Get(id) is null){
                 return NotFound();
             }
-            ProductService.Delete(id);
+            DataBase.Delete(id);
             return NoContent();
         }
     }
