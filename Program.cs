@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using EstoqueAPI.Services;
 
 namespace EstoqueAPI
 {
@@ -13,7 +14,9 @@ namespace EstoqueAPI
     {
         public static void Main(string[] args)
         {
+            
             CreateHostBuilder(args).Build().Run();
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

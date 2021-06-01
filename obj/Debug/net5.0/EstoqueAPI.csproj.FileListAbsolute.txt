@@ -39,3 +39,4 @@ C:\Users\JiaHaoZhao\source\repos\EstoqueAPI\bin\Debug\net5.0\runtimes\win\native
 C:\Users\JiaHaoZhao\source\repos\EstoqueAPI\bin\Debug\net5.0\runtimes\linux\native\libmongocrypt.so
 C:\Users\JiaHaoZhao\source\repos\EstoqueAPI\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\JiaHaoZhao\source\repos\EstoqueAPI\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll
+C:\Users\JiaHaoZhao\source\repos\EstoqueAPI\bin\Debug\net5.0\RabbitMQ.Client.dll

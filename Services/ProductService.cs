@@ -4,6 +4,7 @@ using EstoqueAPI.Models;
 
 namespace EstoqueAPI.Services
 {
+    ///ARMAZENAMENTO DOS DADOS EM MEMÓRIA
     public static class ProductService
     {
         static List<Product> Products { get; }
@@ -24,17 +25,8 @@ namespace EstoqueAPI.Services
         }
         public static Product Get(int id)
         {
-            //var product = DataBase.Get(id);
             var product = Products.Find(product => product.Id == id); 
             return product;
-            // foreach (Product product in Products)
-            // {
-            //     if (product.Id == id)
-            //     {
-            //         return product;
-            //     }
-            // }
-            
         }
 
         public static void Add(Product product)
@@ -59,17 +51,6 @@ namespace EstoqueAPI.Services
                 oldProduct.Quantity = product.Quantity;
                 oldProduct.Price = product.Price;
             }
-            
-            // foreach (Product prod in Products)
-            // {
-            //     if (prod.Id == product.Id)
-            //     {
-            //         prod.Sku = product.Sku;
-            //         prod.Name = product.Name;
-            //         prod.Quantity = product.Quantity;
-            //         prod.Price = product.Price;
-            //     }
-            // }
         }
 
         public static void Delete(int id)
