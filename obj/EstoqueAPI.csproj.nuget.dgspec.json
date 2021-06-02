@@ -1,31 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Haul\\Documents\\GitHub\\Desafio\\EstoqueAPI.csproj": {}
+    "C:\\Users\\JiaHaoZhao\\source\\repos\\EstoqueAPI\\EstoqueAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Haul\\Documents\\GitHub\\Desafio\\EstoqueAPI.csproj": {
+    "C:\\Users\\JiaHaoZhao\\source\\repos\\EstoqueAPI\\EstoqueAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Haul\\Documents\\GitHub\\Desafio\\EstoqueAPI.csproj",
+        "projectUniqueName": "C:\\Users\\JiaHaoZhao\\source\\repos\\EstoqueAPI\\EstoqueAPI.csproj",
         "projectName": "EstoqueAPI",
-        "projectPath": "C:\\Users\\Haul\\Documents\\GitHub\\Desafio\\EstoqueAPI.csproj",
-        "packagesPath": "C:\\Users\\Haul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Haul\\Documents\\GitHub\\Desafio\\obj\\",
+        "projectPath": "C:\\Users\\JiaHaoZhao\\source\\repos\\EstoqueAPI\\EstoqueAPI.csproj",
+        "packagesPath": "C:\\Users\\JiaHaoZhao\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JiaHaoZhao\\source\\repos\\EstoqueAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Haul\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\JiaHaoZhao\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -74,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

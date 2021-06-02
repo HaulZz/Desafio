@@ -4,12 +4,14 @@ using EstoqueAPI.Models;
 using EstoqueAPI.Controllers;
 using EstoqueAPI.Services;
 using System.Linq;
+using System.Text;
+using RabbitMQ.Client;
 
 namespace EstoqueAPI.Services
 {
     public static class PublisherService
     {
-        public void Publish (Product order)
+        public static void Publish (Product order)
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using(var connection = factory.CreateConnection())
@@ -28,7 +30,7 @@ namespace EstoqueAPI.Services
                                     routingKey: "Venda",
                                     basicProperties: null,
                                     body: body);
-                Console.WriteLine(" [x] Sent {0}", order);
+                Console.WriteLine(" [x] Sent {0}", order.Id);
             }
         }
     }

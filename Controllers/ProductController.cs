@@ -15,7 +15,6 @@ namespace EstoqueAPI.Controllers
         [HttpGet]
         public ActionResult<List<Product>> GetAll(){
             //return ProductService.GetAll();
-            ConsumerService.Init();
             return DataBaseService.GetAll();
         }
 

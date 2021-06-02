@@ -8,13 +8,13 @@ namespace EstoqueAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductController : ControllerBase{
+    public class OrderController : ControllerBase{
 
         //Add Order
         [HttpPost]
         public IActionResult Create(Product product){
             PublisherService.Publish(product);
-            return Accept(product);
+            return Accepted(product);
         }
     }
 }
