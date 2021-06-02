@@ -22,7 +22,7 @@ namespace EstoqueAPI.Services{
 		public static int Id(){
 			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
 			var product = collection.Find(bson => true).SortBy(bson => bson["id"]).ThenByDescending(bson => bson["id"]).ToList();
-			return product[0].GetValue("id").ToInt32();
+			return (product[0].GetValue("id").ToInt32()+1);
 		}
 
 		//Get um produto
@@ -68,7 +68,7 @@ namespace EstoqueAPI.Services{
 			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
 			var prod = new BsonDocument
 				{
-					{ "id", Id()+1 },
+					{ "id", Id() },
 					{ "name", product.Name },
 					{ "sku", product.Sku },
 					{ "price", product.Price },
@@ -97,6 +97,8 @@ namespace EstoqueAPI.Services{
 			collection.DeleteOne(filter);
 		}
 
+
+		//Desconta produtos vendidos na loja
 		public static void Discount(Product order){
 			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
 			var product = Get(order.Id);
@@ -106,6 +108,4 @@ namespace EstoqueAPI.Services{
 			collection.UpdateOne(filter, update);
 		}
 	}
-
-            
 }
