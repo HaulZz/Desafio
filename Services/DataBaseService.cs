@@ -13,24 +13,22 @@ namespace EstoqueAPI.Services{
 	{
 		//static List<Product> Products { get; set; }
 		private static MongoClient client = new MongoClient();
-		public static MongoClient Client
+		public static IMongoCollection<MongoDB.Bson.BsonDocument> Collection
 		{
-			get { return client; }
+			get { return client.GetDatabase("test").GetCollection<BsonDocument>("estoque"); }
 		}
 		
 		//Criar novo ID
 		public static int Id(){
-			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
-			var product = collection.Find(bson => true).SortBy(bson => bson["id"]).ThenByDescending(bson => bson["id"]).ToList();
+			var product = Collection.Find(bson => true).SortBy(bson => bson["id"]).ThenByDescending(bson => bson["id"]).ToList();
 			return (product[0].GetValue("id").ToInt32()+1);
 		}
 
 		//Get um produto
 		public static Product Get(int id)
 		{
-			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
 			var filter = Builders<BsonDocument>.Filter.Eq("id", id);
-			var p = collection.Find(filter).ToList()[0];
+			var p = Collection.Find(filter).ToList()[0];
 			var product = new Product();	
 			
 			product.Id = p.GetValue("id").ToInt32();
@@ -46,9 +44,7 @@ namespace EstoqueAPI.Services{
 		//Get todos os produtos
 		public static List<Product> GetAll()
 		{	
-
-			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
-			var prod = collection.Find(new BsonDocument()).ToList();
+			var prod = Collection.Find(new BsonDocument()).ToList();
 			List<Product> Products = new List<Product>();
 			foreach (var p in prod){
 				var product = new Product();
@@ -65,7 +61,6 @@ namespace EstoqueAPI.Services{
 
 		//Add um produto
 		public static void Add(Product product){
-			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
 			var prod = new BsonDocument
 				{
 					{ "id", Id() },
@@ -74,38 +69,36 @@ namespace EstoqueAPI.Services{
 					{ "price", product.Price },
 					{ "quantity", product.Quantity}
 				};
-			collection.InsertOne(prod);
+			Collection.InsertOne(prod);
 		}
 
 		//Update um produto
 		public static void Update(Product product){
-			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
-
+		
 			var update = Builders<BsonDocument>.Update.Set("price", product.Price)
 											.Set("name", product.Name)
 											.Set("sku", product.Sku)
 											.Set("quantity", product.Quantity);
 
 			var filter = Builders<BsonDocument>.Filter.Eq("id", product.Id);
-			collection.UpdateOne(filter, update);
+			Collection.UpdateOne(filter, update);
 		}
 
 		//Deletar um produto
 		public static void Delete(int id){
-			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
+
 			var filter = Builders<BsonDocument>.Filter.Eq("id", id);
-			collection.DeleteOne(filter);
+			Collection.DeleteOne(filter);
 		}
 
 
 		//Desconta produtos vendidos na loja
 		public static void Discount(Product order){
-			var collection = Client.GetDatabase("test").GetCollection<BsonDocument>("estoque");
 			var product = Get(order.Id);
 			var update = Builders<BsonDocument>.Update.Set("quantity", (product.Quantity - order.Quantity));
 
 			var filter = Builders<BsonDocument>.Filter.Eq("id", product.Id);
-			collection.UpdateOne(filter, update);
+			Collection.UpdateOne(filter, update);
 		}
 	}
 }
